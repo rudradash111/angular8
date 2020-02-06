@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  a,
+  a label {
+    cursor: grab;
+  }
+  .btn.btn-primary.btn-sm{
+    background-color: dimgray;
+    box-shadow: #f8f9fa;
+    border-color: dimgray;
+    color:white;
+  }
+</style>
+<body>
+<div class="container" *ngIf="isPopulated" style="margin-left: 3px">
+  <strong > ReferenceNumber</strong><br>
+  <strong >===============</strong>
+  <table *ngFor="let referenceNumber of allReferenceNumber  let i=index">
+
+    <li valign="middle" >
+
+            <a style="margin-left: 4px;font-size: 25px;color: black;cursor: grab" [routerLink]=""  (click)="gotoProductDetails(referenceNumber)">{{referenceNumber}}</a>
+
+    </li>
+  </table>
+</div>
+
+<div class="container" style="text-align: end;margin:2px" *ngIf="isLoad">
+  <button type="button" id="btnSubmit11" style="cursor: pointer;" class="btn btn-primary btn-sm" [routerLink]=" "  (click)="reload()">Go Back To Reference List</button>
+
+</div>
+<div class="container">
+  <ng-container class="row" *ngFor="let data of allReferenceNumberObject ;let i=index">
+    <strong style="color: crimson">Section::{{i+1}}</strong>
+   <div class="row">
+    <div class="col">
+      <STRONG>Field:</STRONG>
+      <input type="text" class="form-control"
+             [(ngModel)]="data.field" [attr.disabled]="isDisabled">
+    </div>
+    <div class="col">
+      <STRONG>Asset Liability:</STRONG>
+      <input type="text" class="form-control"
+             [(ngModel)]="data.assetLiability" [attr.disabled]="isDisabled">
+    </div>
+    <div class="col">
+      <STRONG>Asset Liability Type:</STRONG>
+      <input type="text" class="form-control"
+             [(ngModel)]="data.assetLiabilityType" [attr.disabled]="isDisabled">
+    </div>
+  </div>
+    <div class="row">
+    <div class="col">
+      <STRONG>DataSource:</STRONG>
+      <input type="text" class="form-control"  placeholder="DS"
+             [attr.disabled]="isDisabled" [(ngModel)]="data.dataSource">
+    </div>
+      <div class="col">
+        <STRONG>DataSource Value1:</STRONG>
+        <input type="text" class="form-control"  placeholder="DS"
+               [attr.disabled]="isDisabled" [(ngModel)]="data.value1">
+      </div>
+      <div class="col">
+        <STRONG>DataSource Value2:</STRONG>
+        <input type="text" class="form-control"  placeholder="DS"
+               [attr.disabled]="isDisabled" [(ngModel)]="data.value2">
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <STRONG>DataSource Value3:</STRONG>
+        <input type="text" class="form-control"  placeholder="DS"
+               [attr.disabled]="isDisabled" [(ngModel)]="data.value3">
+      </div>
+      <div class="col">
+        <STRONG>Type Of Value:</STRONG>
+        <input type="text" class="form-control"  placeholder="DS"
+               [attr.disabled]="isDisabled" [(ngModel)]="data.typeofValue">
+      </div>
+      <div class="col">
+        <STRONG>Formula Logic:</STRONG>
+        <input type="text" class="form-control"  placeholder="DS"
+               [attr.disabled]="isDisabled" [(ngModel)]="data.formulaLogic">
+      </div>
+
+    </div>
+
+  </ng-container>
+</div>
+
+
+</body>
+</html>

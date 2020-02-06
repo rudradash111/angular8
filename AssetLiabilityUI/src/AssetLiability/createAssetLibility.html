@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+</head>
+<body>
+<div class="container" >
+<div class="row">
+  <div class="col-lg-6" >
+    <span class="badge badge-pill badge-success" style="font-size: 117%;text-align: center" *ngIf="isAsset" >Asset</span><br/>
+
+
+<div class="row"  *ngFor="let data of assetCurrentAsset let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Current Asset' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%" >Current Asset</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+    <div class="row"  *ngFor="let data of assetCurrentLiability let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Current Liability' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%">Current Liability</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"  *ngFor="let data of assetIntermediateAsset let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Intermediate Asset' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%" >Intermediate Asset</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row"  *ngFor="let data of assetIntermediateLiability let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Intermediate Liability' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%" >Intermediate Liability</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row"  *ngFor="let data of assetLongTermAsset let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Long term Asset' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%" >Long term Asset</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row"  *ngFor="let data of assetLongTermLiability let j=index" >
+      <div *ngIf=" data.assetLiability === 'Asset' && data.assetLiabilityType=== 'Long term Liability' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%" >Long term Liability</span><br>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  *ngFor="let acc of data.currentAsset let k=index" >
+          <div class="row">
+            <div class="form-group mx-sm-3 mb-2 ">
+              <input type="text" class="form-control"  placeholder="Account Number"
+                     [(ngModel)]="acc.accountNumber" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                      style="font-size:32px;border:none;"></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+<!--liability-->
+  <div class="col-lg-6" >
+<span class="badge badge-pill badge-success" style="font-size: 117%;text-align: center" *ngIf="isLiability" >Liability</span><br/>
+
+  <div class="row" *ngFor="let data of liabilityCurrentAsset let j=index" >
+      <div *ngIf=" data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Current Asset' ">
+
+        <span class="badge badge-pill badge-primary" style="font-size: 73%;margin-left: 12px" >Current Asset</span><br/>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+        <div  class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+
+                    <div class="form-group mx-sm-3 mb-2 ">
+                      <input type="text" class="form-control"  placeholder="Account Number"
+                             [(ngModel)]="acc.accountNumber" >
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                              style="font-size:32px;border:none;"></button>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                              style="font-size:32px;border:none;"></button>
+
+                    </div>
+
+        </div>
+
+      </div>
+  </div>
+
+<div class="row" *ngFor="let data of liabilityCurrentLiability let j=index" >
+    <div *ngIf="data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Current Liability' ">
+      <span class="badge badge-pill badge-primary" style="font-size: 73%;margin-left: 12px" >Current Liability</span><br/>
+
+      <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+      <div   class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+          <div class="form-group mx-sm-3 mb-2 ">
+            <input type="text" class="form-control"  placeholder="Account Number" [(ngModel)]="acc.accountNumber" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+
+          </div>
+        </div>
+
+
+  </div>
+
+</div>
+
+  <div class="row" *ngFor="let data of liabilityIntermediateAsset let j=index" >
+
+    <div *ngIf="data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Intermediate Asset' ">
+      <span class="badge badge-pill badge-primary" style="font-size: 73%;margin-left: 12px" >Intermediate Asset</span><br/>
+      <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+
+
+      <div class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+          <div class="form-group mx-sm-3 mb-2 ">
+            <input type="text" class="form-control"  placeholder="Account Number" [(ngModel)]="acc.accountNumber" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+
+          </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+    <div class="row" *ngFor="let data of liabilityIntermediateLiability let j=index" >
+
+      <div *ngIf="data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Intermediate Liability' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%;" >Intermediate Liability</span><br/>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+
+
+        <div class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+          <div class="form-group mx-sm-3 mb-2 ">
+            <input type="text" class="form-control"  placeholder="Account Number" [(ngModel)]="acc.accountNumber" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="row" *ngFor="let data of liabilityLongTermAsset let j=index" >
+
+      <div *ngIf="data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Long term Asset' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%;margin-left: 12px" >Long term Asset</span><br/>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+
+
+        <div class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+          <div class="form-group mx-sm-3 mb-2 ">
+            <input type="text" class="form-control"  placeholder="Account Number" [(ngModel)]="acc.accountNumber" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+
+    <div class="row" *ngFor="let data of liabilityLongTermLiability let j=index" >
+
+      <div *ngIf="data.assetLiability === 'Liability' && data.assetLiabilityType=== 'Long term Liability' ">
+        <span class="badge badge-pill badge-primary" style="font-size: 73%;margin-left: 12px" >Long term Liability</span><br/>
+        <span class="badge badge-pill badge-secondary" style="font-size: 69%;">{{data.field}}</span>
+
+
+        <div class="row" *ngFor="let acc of data.currentAsset let k=index" >
+
+          <div class="form-group mx-sm-3 mb-2 ">
+            <input type="text" class="form-control"  placeholder="Account Number" [(ngModel)]="acc.accountNumber" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text"   class="form-control"  [(ngModel)]="acc.amount" placeholder="Amount" >
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="addCurrentAsset(k,j)" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button (click)="removeCurrentAsset(k,j)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                    style="font-size:32px;border:none;"></button>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+</div>
+
+
+</div>
+</div>
+<div class="form-group mx-sm-3 mb-2" style="margin-top: 3px" >
+  <button type="Submit" class="btn btn-primary btn-sm" STYLE=" border: 0px solid #70757A;margin:auto;display:block;float: right; text-align: center;"  *ngIf="isAsset || isLiability" (click)="submitAssetLiability()">Save</button>
+</div>
+<my-DialogComponent></my-DialogComponent>
+</body>
+</html>
+<!---->

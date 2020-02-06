@@ -1,0 +1,23 @@
+.btn.btn-primary.btn-md{
+  background-color: dimgray;
+  box-shadow: #f8f9fa;
+  border-color: dimgray;
+  color:white;
+}
+.container{
+
+  margin-left: 3px;
+}
+
+select.custom-select{
+  color:black;
+  background-color: #f8f9fa;
+  width: auto;
+
+}
+table thead th {
+  vertical-align: initial;
+
+}
+
+

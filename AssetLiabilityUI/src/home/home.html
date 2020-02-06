@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+<section>
+<div class="row" style="margin-top: 5px">
+
+  <div class="col-md-2">
+    <input type="text" class="form-control" placeholder="Loan Type" style="width: 200px"
+           [(ngModel)]="loanType">
+  </div>
+  <div class="col-md-2">
+
+
+    <input type="text" class="form-control" placeholder="Reference Number" style="width: 200px"
+           [(ngModel)]="referenceNumber"  >
+
+
+  </div>
+  <div class="col-md-1">
+    <button (click)="getReferenceNumber(referenceNumber)" type="submit" class="btn btn-md btn-primary" style="float: right;box-shadow:5px 10px 8px  #000000;">Get</button>
+
+  </div>
+</div>
+
+<div class="row">
+<div class="form-group col-md-1">
+  <strong >Field</strong>
+  <input type="text" class="form-control"
+         [(ngModel)]="homeObject.field">
+</div>
+
+<div class="form-group col-md-1">
+  <strong >Asset/Liability</strong>
+  <select  class="form-control" style="width: initial"   [(ngModel)]="homeObject.assetLiability" name="assetLiability" placeholder="Asset/Liability">
+    <option value="Asset">Asset</option>
+    <option value="Liability">Liability</option>
+  </select>
+</div>
+<div class="form-group col-md-2">
+  <strong >Asset/Liability Type</strong>
+  <select class="form-control"   style="width: initial" [(ngModel)]="homeObject.assetLiabilityType" name="assetLiability" placeholder="Asset/Liability">
+    <option value="Current Asset">Current Asset</option>
+    <option value="Current Liability">Current Liability</option>
+    <option value="Intermediate Asset">Intermediate Asset</option>
+    <option value="Intermediate Liability">Intermediate Libality</option>
+    <option value="Long term Asset">Long term Asset</option>
+    <option value="Long term Liability">Long term Liability</option>
+
+  </select>
+</div>
+  <div class="form-group col-md-1">
+    <strong >DataSource</strong>
+    <input type="text" class="form-control"
+           [(ngModel)]="homeObject.dataSource">
+  </div>
+  <div class="form-group col-md-1">
+    <strong >DS Field1</strong>
+    <input type="text" class="form-control"
+           [(ngModel)]="homeObject.value1">
+  </div>
+
+  <div class="form-group col-md-1">
+    <strong >DS Field2</strong>
+    <input type="text" class="form-control"
+           [(ngModel)]="homeObject.value2">
+  </div>
+  <div class="form-group col-md-1">
+    <strong >DS Field3</strong>
+    <input type="text" class="form-control"
+           [(ngModel)]="homeObject.value3">
+  </div>
+
+  <div class="form-group col-md-1" >
+    <strong >ValueType</strong>
+    <select class="form-control"  [(ngModel)]="homeObject.typeofValue" name="assetLiability" placeholder="valueType">
+      <option value="Amount">Amount</option>
+      <option value="Formula">Formula</option>
+    </select>
+  </div>
+<div class="form-group col-sm-2" >
+  <strong >Formula Logic</strong>
+  <input type="text" class="form-control" id="paymentAmount"
+         [(ngModel)]="homeObject.formulaLogic">
+</div>
+<div class="form-group col-sm-1">
+  <button  (click)="addRow()" type="submit" class="fa fa-plus-circle" aria-hidden="true"
+           style="font-size:32px;border:none;margin-top: 34px;float: right"></button>
+</div>
+</div>
+<h4  *ngIf="row1" style="text-align: center;"> **Below Data Succesfully created**</h4>
+
+<!--new data -->
+<div class="row"  *ngFor="let data of dataStream ;let i=index" >
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.field"  >
+  </div>
+
+  <div class="form-group col-md-1">
+    <select  class="form-control" style="width: initial"    [(ngModel)]="data.assetLiability" name="assetLiability" placeholder="Asset/Liability">
+      <option value="Asset">Asset</option>
+      <option value="Liability">Liability</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2">
+    <select class="form-control"   style="width: initial"   [(ngModel)]="data.assetLiabilityType" name="assetLiability" placeholder="Asset/Liability">
+      <option value="Current Asset">Current Asset</option>
+      <option value="Current Liability">Current Liability</option>
+      <option value="Intermediate Asset">Intermediate Asset</option>
+      <option value="Intermediate Liability">Intermediate Libality</option>
+      <option value="Long term Asset">Long term Asset</option>
+      <option value="Long term Liability">Long term Liability</option>
+
+    </select>
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.dataSource"  >
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value1"  >
+  </div>
+
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value2"  >
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value3"  >
+  </div>
+
+  <div class="form-group col-md-1" >
+    <select class="form-control"   [(ngModel)]="data.typeofValue" name="assetLiability" placeholder="valueType">
+      <option value="Amount">Amount</option>
+      <option value="Formula">Formula</option>
+    </select>
+  </div>
+  <div class="form-group col-sm-2" >
+    <input type="text" class="form-control" id="paymentAmount"
+           [(ngModel)]="data.formulaLogic"  >
+  </div>
+  <div class="form-group col-sm-1">
+            <button (click)="deleteRow(i)" type="submit" class="fa fa-minus-circle" aria-hidden="true"
+                   style="font-size:32px;border:none;margin-top: 6px;float: right"></button>
+
+
+  </div>
+</div>
+<!--saved data-->
+<div class="row"  *ngFor="let data of homeObjectArray ;let i=index" >
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.field" [attr.disabled]="isDisabled" >
+  </div>
+
+  <div class="form-group col-md-1">
+    <select  class="form-control" style="width: initial" [attr.disabled]="isDisabled"   [(ngModel)]="data.assetLiability" name="assetLiability" placeholder="Asset/Liability">
+      <option value="Asset">Asset</option>
+      <option value="Liability">Liability</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2">
+    <select class="form-control"   style="width: initial" [attr.disabled]="isDisabled"  [(ngModel)]="data.assetLiabilityType" name="assetLiability" placeholder="Asset/Liability">
+      <option value="Current Asset">Current Asset</option>
+      <option value="Current Liability">Current Liability</option>
+      <option value="Intermediate Asset">Intermediate Asset</option>
+      <option value="Intermediate Liability">Intermediate Libality</option>
+      <option value="Long term Asset">Long term Asset</option>
+      <option value="Long term Liability">Long term Liability</option>
+
+    </select>
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.dataSource" [attr.disabled]="isDisabled" >
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value1" [attr.disabled]="isDisabled" >
+  </div>
+
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value2" [attr.disabled]="isDisabled" >
+  </div>
+  <div class="form-group col-md-1">
+    <input type="text" class="form-control"
+           [(ngModel)]="data.value3" [attr.disabled]="isDisabled" >
+  </div>
+
+  <div class="form-group col-md-1" >
+    <select class="form-control" [attr.disabled]="isDisabled"  [(ngModel)]="data.typeofValue" name="assetLiability" placeholder="valueType">
+      <option value="Amount">Amount</option>
+      <option value="Formula">Formula</option>
+    </select>
+  </div>
+  <div class="form-group col-sm-2" >
+    <input type="text" class="form-control" id="paymentAmount"
+           [(ngModel)]="data.formulaLogic" [attr.disabled]="isDisabled" >
+  </div>
+<!--  <div class="form-group col-sm-1">-->
+<!--    <button  (click)="addRow()" type="submit" class="fa fa-plus-circle" aria-hidden="true"-->
+<!--             style="font-size:32px;border:none;margin-top: 34px;float: right"></button>-->
+<!--  </div>-->
+</div>
+
+<button (click)="sendData()" type="submit" class="btn btn-md btn-primary" style="float: right;box-shadow: 5px 10px 8px #000000;">Save</button>
+
+<my-DialogComponent></my-DialogComponent>
+</section>
+</body>
+</html>
