@@ -8,7 +8,6 @@ import {Home} from "../home/Home";
 import {DomainObject} from "./DomainObject";
 import {DialogComponent} from "../dialog/DialogComponent";
 
-
 @Component({
   selector: 'app-create-AssetLiability',
   templateUrl: './createAssetLibility.html',
