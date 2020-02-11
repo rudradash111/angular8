@@ -31,7 +31,6 @@ export class createAssetLibilitycomponent implements OnInit {
   private assetIntermediateLiability: Array<Home> = [];
   private assetLongTermAsset: Array<Home> = [];
   private assetLongTermLiability: Array<Home> = [];
-  private dialog: DialogComponent = new DialogComponent();
   constructor(public assetLibilityService: AssetLibilityService,
               public router: Router, public commonService: CommonService) {
   }
@@ -52,9 +51,6 @@ export class createAssetLibilitycomponent implements OnInit {
     Object.assign(this.liabilityLongTermLiability, this.homeArray);
     Object.assign(this.liabilityLongTermAsset, this.homeArray);
     Object.assign(this.liabilityIntermediateLiability, this.homeArray);
-
-    this.dialog.showAssetLiabilityModal();
-
 
     this.homeArray.forEach((value, index) => {
 if(value.assetLiability === "Liability"){
@@ -83,7 +79,7 @@ if(value.assetLiability === "Liability"){
 
   submitAssetLiability() {
     this.assetLibilityService.save(this.assetLiability);
-    this.dialog.showAssetLiabilityModal();
+
   }
 
 

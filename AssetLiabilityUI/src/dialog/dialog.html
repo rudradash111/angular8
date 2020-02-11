@@ -1,86 +1,13 @@
-<div id="myModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog ">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-      </div>
-      <div class="modal-body">
-        <p>Record saved Successfully</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+<div class="modal-header">
+  <h4 class="modal-title">Message!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
-
-
-<div id="validModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog ">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-      </div>
-      <div class="modal-body">
-
-        <p>&bull; Please Enter Reference Number</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+<div class="modal-body">
+  <strong style="color: black; ">{{message}}</strong><br>
+  <strong style="color: blueviolet;font-size: larger;text-align: center">{{src}}</strong>
 </div>
-
-
-<div id="errorModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog ">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-      </div>
-      <div class="modal-body">
-
-        <p>OOPS! Something went wrong</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-<div id="assetLiabilityModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog ">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-      </div>
-      <div class="modal-body">
-
-        <p>Record Saved Successfully</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>

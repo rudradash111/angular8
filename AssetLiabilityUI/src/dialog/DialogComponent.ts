@@ -1,38 +1,21 @@
-import {Component, OnInit} from "@angular/core";
-import {ConfirmationService, Message} from "primeng/api";
-import {homeComponent} from "../home/home.component";
-declare var $: any;
+import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
+
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+
 @Component({
   selector: 'my-DialogComponent',
 templateUrl: './dialog.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls:['./dialog.css']
 
 })
 
-export class   DialogComponent {
+export class   DialogComponent implements OnInit{
+  @Input() src;
+  @Input() message;
+  constructor(private activeModal: NgbActiveModal) {}
 
-  showModal(referenceNumber:String) {
-  if(referenceNumber!==null) {
-
- $("#myModal").modal('show');
-  }
-  }
-  showAssetLiabilityModal():void{
-    $("#myModal").modal('show');
-
-  }
-  validModal():void{;
-    $("#validModal").modal('show');
-  }
-  sendModal(): void {
-    //do something here
-    this.hideModal();
-  }
-  hideModal():void {
-    document.getElementById('close-modal').click();
+  ngOnInit() {
   }
 
-  errorModal() {
-    $("#errorModal").modal('show');
-  }
 }

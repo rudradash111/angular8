@@ -19,19 +19,14 @@ export class HomeService {
   getReferenceNumber='http://localhost:8888/rpa/api/v1/getAllReferenceNumber';
   saveHomeObject(homeArray: Array<Home> = [],loan,ref) {
     let obj;
-    this.http.post<LoanAndReferenceType>('http://localhost:8888/rpa/api/v1/homeSave',
+  return   this.http.post<LoanAndReferenceType>('http://localhost:8888/rpa/api/v1/homeSave',
       {
         referenceNumber:ref,
         loanType:loan,
         homeList:homeArray
 
-      }).subscribe(data => {
-      console.log(JSON.stringify(this.dataStream));
-
-      return true;
-    },error=>{
-
-    })
+      }). pipe( retry(1),
+      catchError(this.errorHandle));
       }
 /*Observable return result of http call, to handel error we use catch operetor*/
   /*observel have 3 state next,error,complete

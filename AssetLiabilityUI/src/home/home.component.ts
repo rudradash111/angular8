@@ -7,6 +7,7 @@ import {Observable, Subject, Subscription} from "rxjs";
 import {ConfirmationService} from 'primeng/api';
 import {DialogComponent} from "../dialog/DialogComponent";
 import {DOCUMENT} from '@angular/common';
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-home-component',
@@ -23,7 +24,7 @@ export class homeComponent implements OnInit {
   private isDisabled: boolean = false;
   private isUpdate: boolean = false;
   private isSave: boolean = false;
-  private dialog: DialogComponent = new DialogComponent();
+// private dialog: DialogComponent = new DialogComponent(new NgbActiveModal());
   private errormsg: string = '';
   private showElement: any;
 
@@ -31,7 +32,7 @@ export class homeComponent implements OnInit {
 
   }
 
-  constructor(public homeService: HomeService,public router:Router,
+  constructor(public homeService: HomeService,public router:Router,public modalService: NgbModal,
                public commonService: CommonService,
               private confirmationService: ConfirmationService,
               @Inject(DOCUMENT) private _document: Document)
@@ -56,16 +57,34 @@ export class homeComponent implements OnInit {
 
   sendData() {
     if (this.referenceNumber.length > 0) {
-     this.homeService.saveHomeObject(this.dataStream, this.loanType, this.referenceNumber);
-      this.commonService.dataStreamService = this.dataStream;
-    // this.dialog.showModal(this.referenceNumber);
-      // setTimeout(() => {
-      //   console.log('showmodal');
-      //   this.dialog.showModal(this.referenceNumber);
-      // }, 5000);
-      this.router.navigate(['/create']);
+
+      this.homeService.saveHomeObject(this.dataStream, this.loanType, this.referenceNumber)
+        .subscribe(data=>{
+            this.commonService.dataStreamService = this.dataStream;
+            const modalRef = this.modalService.open(DialogComponent, {backdropClass: 'light-blue-backdrop'});
+            modalRef.componentInstance.message = "Record saved Successfully with ReferenceNumber::";
+            modalRef.componentInstance.src=this.referenceNumber;
+            this.router.navigate(['/create']);
+        },
+          error => {
+            const modalRef = this.modalService.open(DialogComponent,{backdropClass: 'light-blue-backdrop'});
+            modalRef.componentInstance.message = "Record not saved successfully with ReferenceNumber::" ;
+            modalRef.componentInstance.src=this.referenceNumber;
+            },
+          ()=>{
+
+          }
+        );
+
+
+
+
+
+
+
+
     } else {
-      this.dialog.validModal();
+      // this.dialog.validModal();
     }
   }
 /*subscribe mostly used for getting data from obesrevel object who is going to subscribe it*/
@@ -77,7 +96,7 @@ export class homeComponent implements OnInit {
         },
         error => {
           this.errormsg = error;
-          this.dialog.errorModal();
+          // this.dialog.errorModal();
         },()=>{
           console.log("Observel completed successfully");
         }
@@ -87,7 +106,7 @@ export class homeComponent implements OnInit {
       this.isSave = false;
 
     } else {
-      this.dialog.validModal();
+      // this.dialog.validModal();
     }
   }
 }

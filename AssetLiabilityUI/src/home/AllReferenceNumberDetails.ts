@@ -4,6 +4,7 @@ import {Home} from "./Home";
 import {DOCUMENT} from "@angular/common";
 import {error} from "@angular/compiler/src/util";
 import {DialogComponent} from "../dialog/DialogComponent";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "all-reference",
@@ -15,10 +16,9 @@ export class AllReferenceNumberDetails implements OnInit {
   allReferenceNumberObject: Array<Home> = []
   isDisabled: boolean;
   isPopulated: boolean = false;
-  isData:boolean=false;
   private message: any;
   private errorMsg: any;
-  private dialog: DialogComponent = new DialogComponent();
+
 
   constructor(public homeService: HomeService, @Inject(DOCUMENT) private _document: Document) {
   }
@@ -31,7 +31,7 @@ export class AllReferenceNumberDetails implements OnInit {
       },
       error => {
         this.message = error;
-        this.dialog.errorModal();
+        // this.dialog.errorModal();
       });
   }
 
@@ -45,7 +45,7 @@ export class AllReferenceNumberDetails implements OnInit {
       error => {
 
         this.errorMsg = error;
-        this.dialog.errorModal();
+
       }
     );
   }
