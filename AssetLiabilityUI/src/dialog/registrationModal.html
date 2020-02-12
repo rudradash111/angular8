@@ -1,0 +1,32 @@
+<div class="modal-header" >
+  <h4 class="modal-title">Registration</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modalEvent.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" >
+  <div class="form-group row" style="margin-left: 5px">
+
+    <div class="col-xs-6">
+      <STRONG for="username">UserName</STRONG>
+      <input class="form-control" id="username" type="text" [(ngModel)]="userName">
+    </div>
+  </div>
+  <div class="form-group row" style="margin-left: 5px">
+    <div class="col-xs-6">
+      <STRONG for="email">Email</STRONG>
+      <input class="form-control" id="email" type="text" [(ngModel)]="email">
+    </div>
+  </div>
+  <div class="form-group row" style="margin-left: 5px">
+    <div class="col-xs-6">
+      <STRONG for="psw">Password</STRONG>
+      <input class="form-control" id="psw" type="text" [(ngModel)]="password">
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="save()" style="float: left">Save</button>
+
+  <button type="button" class="btn btn-outline-dark" (click)="modalEvent.close('Close click')">Close</button>
+</div>

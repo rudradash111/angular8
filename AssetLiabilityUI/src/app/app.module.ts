@@ -14,10 +14,13 @@ import {ConfirmationService} from "primeng/api";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AllReferenceNumberDetails} from "../home/AllReferenceNumberDetails";
 import {NgbActiveModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {LoginComponent} from "../login/loginComponent";
+import {RegistrationModalComponent} from "../dialog/registrationModalComponent";
 @NgModule({
   declarations: [
     AppComponent,createAssetLibilitycomponent,homeComponent
-    ,PagenotfoundComponent,DialogComponent,AllReferenceNumberDetails,
+    ,PagenotfoundComponent,DialogComponent,AllReferenceNumberDetails
+    ,LoginComponent,RegistrationModalComponent
 
   ],
   imports: [
@@ -28,7 +31,7 @@ import {NgbActiveModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     NgbModule],
   providers: [ConfirmationService],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent,RegistrationModalComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
