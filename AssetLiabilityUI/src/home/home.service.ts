@@ -3,12 +3,14 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable, Subscription, throwError} from "rxjs";
 import {Home} from "./Home";
 import {LoanAndReferenceType} from "./LoanAndReferenceType";
-import {catchError, retry} from "rxjs/operators";
+import {catchError, retry, share} from "rxjs/operators";
 @Injectable({
   providedIn:"root"
 })
 export class HomeService {
   private dataStream: Array<Home> = [];
+  homeObjectArray: Array<any> = [];
+
   constructor(private http:HttpClient) {
 
   }
@@ -17,8 +19,8 @@ export class HomeService {
   getHomeUrl='http://localhost:8888/rpa/api/v1/getHomeObject';
   url='http://localhost:8888/rpa/api/v1/homeSave';
   getReferenceNumber='http://localhost:8888/rpa/api/v1/getAllReferenceNumber';
+  /*when u calling any http method u need omention subscribe otherwise u will not abel to call*/
   saveHomeObject(homeArray: Array<Home> = [],loan,ref) {
-    let obj;
   return   this.http.post<LoanAndReferenceType>('http://localhost:8888/rpa/api/v1/homeSave',
       {
         referenceNumber:ref,
@@ -28,6 +30,20 @@ export class HomeService {
       }). pipe( retry(1),
       catchError(this.errorHandle));
       }
+  saveUser(userName,email,password, role) {
+   const headers = new HttpHeaders({ Authorization: 'Basic ' +
+       btoa(userName + ':' + password +email + ':' + role) });
+    return this.http.post<any>('http://localhost:8888/registration/createUser',
+      {
+        userName:userName,
+        password:password,
+        email:email,
+        role:role,
+      },{headers}). pipe( share(),
+      catchError(this.errorHandle));
+    /*share() it used because it will prevent same api call multipel time*/
+/*dont direct pass rejObj in body otherwise it will consider rejObj also anather property*/
+  }
 /*Observable return result of http call, to handel error we use catch operetor*/
   /*observel have 3 state next,error,complete
   * in next u will get the value after subscribe it (next by next)
@@ -64,11 +80,12 @@ getAllReferenceNumber():Observable<any[]>{
   }
 
 
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
-
+  createBasicAuthToken(username: String, password: String) {
+    return 'Basic ' + window.btoa(username + ":" + password)
+  }
 }

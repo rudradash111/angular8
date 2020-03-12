@@ -1,4 +1,5 @@
-<body style="background-color: #644987;margin:0 auto;">
+
+<body >
 <section>
   <div class="col-md-5" style="position: absolute;left: 29%;top:25%">
     <div class="card" style=" border-radius: 25px;">
@@ -7,19 +8,19 @@
         <div class="form-group row" style="margin-left: 100px">
           <div class="col-xs-6">
             <strong for="ex2" style="margin-left: 81px">UserName</strong>
-            <input class="form-control" id="ex2" type="text" style=" border-radius: 25px;width: 250px">
+            <input class="form-control" id="ex2" type="text" [(ngModel)]="username" style=" border-radius: 25px;width: 250px">
           </div>
         </div>
         <div class="form-group row" style="margin-left: 100px">
           <div class="col-xs-6">
             <strong for="ex3" style="margin-left: 81px">Password</strong>
-            <input class="form-control" id="ex3" type="text" style=" border-radius: 25px;width: 250px">
+            <input class="form-control" id="ex3" type="text" [(ngModel)]="password" style=" border-radius: 25px;width: 250px">
           </div>
         </div>
         <div class="form-group row" style="margin-left: 100px">
 
           <div class="col-xs-6">
-            <button type="button" class="btn btn-primary active" style="width: 250px;background-color: #644987">Login
+            <button type="button" class="btn btn-primary active" style="width: 250px;background-color: #644987" (click)="login()">Login
             </button>
           </div>
         </div>

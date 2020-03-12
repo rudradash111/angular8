@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AssetLiability} from './AssetLiability';
 
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {catchError, retry, share} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,25 @@ export class AssetLibilityService {
   //   // }
   // }
   save(assetLiability: AssetLiability) {
+      return this.http.post<any>('http://localhost:8888/rpa/api/v1/createRegistration',
+        {
 
+
+        }). pipe( retry(1),
+        catchError(this.errorHandle))
+       }
+
+  errorHandle(error) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
+
 }

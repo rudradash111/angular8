@@ -1,5 +1,5 @@
 import {AssetLiability} from './AssetLiability';
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AssetLibilityService} from './AssetLibilityService';
 import {CommonService} from "../service/CommonService";
@@ -7,6 +7,8 @@ import {Home} from "../home/Home";
 
 import {DomainObject} from "./DomainObject";
 import {DialogComponent} from "../dialog/DialogComponent";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-create-AssetLiability',
@@ -32,7 +34,9 @@ export class createAssetLibilitycomponent implements OnInit {
   private assetLongTermAsset: Array<Home> = [];
   private assetLongTermLiability: Array<Home> = [];
   constructor(public assetLibilityService: AssetLibilityService,
-              public router: Router, public commonService: CommonService) {
+              public router: Router, public commonService: CommonService,
+              public modalService: NgbModal,
+              @Inject(DOCUMENT) private _document: Document) {
   }
   i:number=0;
   private isLiabilityCurrentAsset: boolean;
@@ -78,7 +82,19 @@ if(value.assetLiability === "Liability"){
   }
 
   submitAssetLiability() {
-    this.assetLibilityService.save(this.assetLiability);
+    console.log(JSON.stringify(this.homeArray));
+    this.assetLibilityService.save(this.assetLiability).subscribe(data=>{
+
+        const modalRef = this.modalService.open(DialogComponent,{backdropClass: 'light-blue-backdrop'});
+        modalRef.componentInstance.message = "Record saved successfully" ;
+
+      },
+      error => {
+        this.router.navigate(['/home']);
+        const modalRef = this.modalService.open(DialogComponent,{backdropClass: 'light-blue-backdrop'});
+        modalRef.componentInstance.message = "Record saved successfully" ;
+
+      });
 
   }
 

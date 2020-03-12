@@ -17,7 +17,7 @@
   }
 </style>
 <body>
-<div class="container" *ngIf="isPopulated" style="margin-left: 3px">
+<div class="container" style="margin-left: 3px">
   <strong > ReferenceNumber</strong><br>
   <strong >===============</strong>
   <table *ngFor="let referenceNumber of allReferenceNumber  let i=index">
@@ -30,11 +30,11 @@
   </table>
 </div>
 
-<div class="container" style="text-align: end;margin:2px" *ngIf="isLoad">
-  <button type="button" id="btnSubmit11" style="cursor: pointer;" class="btn btn-primary btn-sm" [routerLink]=" "  (click)="reload()">Go Back To Reference List</button>
+<!--<div class="container" style="text-align: end;margin:2px" *ngIf="isLoad">-->
+<!--  <button type="button" id="btnSubmit11" style="cursor: pointer;" class="btn btn-primary btn-sm" [routerLink]=" "  (click)="reload()">Go Back To Reference List</button>-->
 
-</div>
-<div class="container">
+<!--</div>-->
+<div class="container" style="margin-left: 12px;">
   <ng-container class="row" *ngFor="let data of allReferenceNumberObject ;let i=index">
     <strong style="color: crimson">Section::{{i+1}}</strong>
    <div class="row">

@@ -11,7 +11,7 @@ templateUrl: './dialog.html',
 })
 
 export class   DialogComponent implements OnInit{
-  @Input() src;
+  @Input() src;// @Input() it's expecting a value from parent component
   @Input() message;
   constructor(private activeModal: NgbActiveModal) {}
 

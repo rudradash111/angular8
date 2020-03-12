@@ -16,11 +16,14 @@ import {AllReferenceNumberDetails} from "../home/AllReferenceNumberDetails";
 import {NgbActiveModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {LoginComponent} from "../login/loginComponent";
 import {RegistrationModalComponent} from "../dialog/registrationModalComponent";
+import {ActiveGuardServiceCanActive} from "../service/ActiveGuardServiceCanActive";
+import {AuthService} from "../service/AuthService";
+import {SecurityDialogComponent} from "../dialog/security-dialog.component";
 @NgModule({
   declarations: [
     AppComponent,createAssetLibilitycomponent,homeComponent
     ,PagenotfoundComponent,DialogComponent,AllReferenceNumberDetails
-    ,LoginComponent,RegistrationModalComponent
+    ,LoginComponent,RegistrationModalComponent,SecurityDialogComponent
 
   ],
   imports: [
@@ -30,8 +33,8 @@ import {RegistrationModalComponent} from "../dialog/registrationModalComponent";
     FormsModule,
     HttpClientModule,
     NgbModule],
-  providers: [ConfirmationService],
-  entryComponents: [DialogComponent,RegistrationModalComponent],
+  providers: [ConfirmationService,AuthService],
+  entryComponents: [DialogComponent,RegistrationModalComponent,SecurityDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
