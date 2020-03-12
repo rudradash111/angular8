@@ -17,7 +17,6 @@ isSuccess:boolean=false;
 constructor(private service:HomeService,public modalService: NgbModal) {
 
 }
-
   save() {
     this.service.saveUser(this.regObj.name,this.regObj.email,this.regObj.password,this.regObj.role).subscribe(data=>{
         const modalRef = this.modalService.open(DialogComponent,{backdropClass: 'light-blue-backdrop'});
