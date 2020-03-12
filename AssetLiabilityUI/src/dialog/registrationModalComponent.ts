@@ -28,7 +28,6 @@ constructor(private service:HomeService,public modalService: NgbModal) {
       });
 
 
-
   }
 
 
